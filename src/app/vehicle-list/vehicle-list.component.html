@@ -1,0 +1,62 @@
+<div class="card">
+  <div class="card-header with-border">
+    <h3 class="card-title">Lista de veículos</h3>
+    <div class="card-tools">
+      <button class="btn btn-sm btn-success" (click)="novoVeiculo()">
+        <i class="fa fa-fw fa-plus"></i> Novo veículo
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="text-left" width="15%">Nome</th>
+          <th class="text-left" width="20%">Modelo</th>
+          <th class="text-left" width="15%">Marca</th>
+          <th class="text-center" width="15%">Consumo na cidade</th>
+          <th class="text-center" width="15%">Consumo na rodovia</th>
+          <th class="text-center" width="15%">Fabricação</th>
+          <th class="text-center" width="5%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="veiculos.length === 0">
+          <td class="text-center" colspan="4">
+            Não há veículos a serem exibidos
+          </td>
+        </tr>
+        <tr *ngFor="let $item of veiculos">
+          <td class="text-left">
+            {{ $item.name }}
+          </td>
+          <td class="text-left">
+            {{ $item.model }}
+          </td>
+          <td class="text-left">
+            {{ $item.mark.name }}
+          </td>
+          <td class="text-center">
+            {{ $item.cityConsume }}
+          </td>
+          <td class="text-center">
+            {{ $item.highwayConsume }}
+          </td>
+          <td class="text-center">
+            {{ $item.fabrication | date: 'dd/MM/yyyy' }}
+          </td>
+          <td class="text-center">
+            <a [routerLink]="['/veiculo', $item.id]">
+              Editar
+            </a>
+          </td>
+          <!-- <td class="text-center">
+            <a [routerLink]="['/veiculo', $item.id]">
+              {{ $item.situacao }}
+            </a>
+          </td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
